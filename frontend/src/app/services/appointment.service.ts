@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class AppointmentService {
 
-  private appointmentUrl = 'http://localhost:3000/appointment'
+  private appointmentUrl = environment.apiUrl + '/appointment'
 
   constructor(private http: HttpClient) { }
 
