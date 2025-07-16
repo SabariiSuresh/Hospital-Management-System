@@ -1,0 +1,42 @@
+<h2 class="title">
+  <mat-icon>event_note</mat-icon> Patient Appointment Details
+</h2>
+
+<div class="container">
+
+  <mat-card class="appointment-card" *ngIf="appointment; else error">
+
+    <mat-card-content>
+      <p>
+        <mat-icon>person</mat-icon> &nbsp;<strong>Patient :</strong> {{ getPatientDisplayName(appointment.patient) |
+        titlecase }}
+      </p>
+      <p>
+        <mat-icon>medical_services</mat-icon>&nbsp; <strong>Doctor :</strong> {{
+        getDoctorDisplayName(appointment.doctor) | titlecase }}
+      </p>
+      <p>
+        <mat-icon>event</mat-icon>&nbsp; <strong>Date :</strong> {{ appointment.date | date : 'mediumDate' }}
+      </p>
+      <p>
+        <mat-icon>schedule</mat-icon> &nbsp;<strong>Time :</strong> {{ appointment.time }}
+      </p>
+
+      <p>
+        <mat-icon>flag</mat-icon> <strong>Status : </strong> <mat-chip [ngClass]="getStatusColor(appointment.status)"
+          selected>
+          {{ appointment.status }}
+        </mat-chip>
+      </p>
+
+    </mat-card-content>
+
+    <mat-card-actions class="back-button-container">
+      <button mat-raised-button color="primary" (click)="goBack()">← Back to List</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <ng-template #error>
+    <p class="message error">{{ errorMessage }}</p>
+  </ng-template>
+</div>

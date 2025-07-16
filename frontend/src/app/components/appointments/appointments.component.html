@@ -1,0 +1,97 @@
+<div class="message success" *ngIf="successMessage">{{ successMessage }}</div>
+<div class="message error" *ngIf="errorMessage">{{ errorMessage }}</div>
+<h2 class="title">Add Appointment</h2>
+
+<form (ngSubmit)="onSubmit()" #appointmentForm="ngForm" class="appointment-form">
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Patient</mat-label>
+    <mat-select [(ngModel)]="newAppointment.patient" name="patient" required>
+      <mat-option *ngFor="let patient of patients" [value]="patient._id">{{ patient.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Doctor</mat-label>
+    <mat-select [(ngModel)]="newAppointment.doctor" name="doctor" required>
+      <mat-option *ngFor="let doctor of doctors" [value]="doctor._id">{{ doctor.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="newAppointment.date" name="date" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Time</mat-label>
+    <mat-select name="time" [(ngModel)]="newAppointment.time" required>
+      <mat-option *ngFor="let time of times" [value]="time">{{ time }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Status</mat-label>
+    <mat-select name="status" [(ngModel)]="newAppointment.status" required>
+      <mat-option value="Scheduled">Schedule</mat-option>
+      <mat-option value="Completed">Completed</mat-option>
+      <mat-option value="Cancelled">Cancelled</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="form-buttons">
+    <button mat-raised-button color="primary" type="submit" [disabled]="appointmentForm.invalid">
+      {{ isEditing ? 'Update' : 'Add Appointment' }}
+    </button>
+    <button mat-raised-button type="button" (click)="resetForm()" *ngIf="isEditing">Cancel</button>
+  </div>
+</form><br>
+
+<hr class="my-4 border-t-2 border-gray-300"><br>
+
+<h2 class="title" *ngIf="appointments.length > 0">Appointment List</h2>
+
+<div class="appointment-cards">
+  <mat-card *ngFor="let appointment of paginatedData" class="appointment-card mat-elevation-z3">
+    <mat-card-content>
+      <p>
+        <mat-icon>person</mat-icon> &nbsp;<strong>Patient :</strong> {{ getPatientDisplayName(appointment.patient) |
+        titlecase }}
+      </p>
+      <p>
+        <mat-icon>medical_services</mat-icon>&nbsp; <strong>Doctor :</strong> {{
+        getDoctorDisplayName(appointment.doctor) | titlecase }}
+      </p>
+      <p>
+        <mat-icon>event</mat-icon>&nbsp; <strong>Date :</strong> {{ appointment.date | date : 'mediumDate' }}
+      </p>
+      <p>
+        <mat-icon>schedule</mat-icon> &nbsp;<strong>Time :</strong> {{ appointment.time }}
+      </p>
+
+    </mat-card-content>
+
+
+    <mat-card-actions align="end">
+      <mat-chip [ngClass]="getStatusColor(appointment.status)" selected>
+        {{ appointment.status }}
+      </mat-chip>
+      <button mat-icon-button color="primary" (click)="goToAppointmentList(appointment._id!)">
+        <mat-icon>preview</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" (click)="editAppointment(appointment)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteAppointment(appointment._id!)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<div class="paginator-container" *ngIf="appointments.length > 0">
+  <mat-paginator [length]="appointments.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

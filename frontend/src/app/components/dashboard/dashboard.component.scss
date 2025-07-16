@@ -1,0 +1,137 @@
+.dashboard-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 30px 40px;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #eae9f4;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(90, 62, 138, 0.6);
+  user-select: none;
+  animation: fadeInSlideUp 1s ease forwards;
+}
+
+.welcome {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #dedcfb;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  user-select: text;
+}
+
+.description-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  max-width: 720px;
+  margin: 0 auto 36px auto;
+  padding: 28px 32px;
+  box-shadow: 0 6px 25px rgba(90, 62, 138, 0.3);
+  font-size: 30px;
+  color: #d7d5f2;
+  line-height: 1.5;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 10px 40px rgba(90, 62, 138, 0.5);
+  }
+}
+.chart-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  box-shadow: 0 6px 30px rgba(90, 62, 138, 0.25);
+  padding: 36px 32px 32px;
+  margin: 0 auto 36px auto;
+  max-width: 650px; 
+  color: black;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 38px rgba(90, 62, 138, 0.45);
+  }
+}
+
+
+.chart-container.pie-chart {
+  display: flex;
+  justify-content: center;
+  max-width: 600px;
+}
+
+
+@media (min-width: 960px) {
+  .dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 38px;
+    padding: 40px 50px;
+  }
+
+  .description-card {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  .chart-container {
+    flex: 1 1 40%; 
+    max-width: 42%;
+    margin: 0;
+  }
+
+  
+  .chart-container.pie-chart {
+    flex: 1 1 40%;
+    max-width: 42%;
+    margin: 0 auto;
+  }
+}
+.summary-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  flex: 1 1 240px;
+  max-width: 280px;
+  text-align: center;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 2px 2px 8px rgba(255, 255, 255, 0.05),
+              4px 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+}
+
+.card.doctor { border-left: 6px solid #2196f3; }
+.card.patient { border-left: 6px solid #4caf50; }
+.card.appointment { border-left: 6px solid #ff9800; }
+
+mat-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f4f4fa;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.content {
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: #fff;
+}

@@ -1,0 +1,56 @@
+<div class="dashboard-container">
+  <h1 class="welcome">Welcome to CityCare Hospital</h1>
+
+   <mat-card class="description-card">
+    <mat-card-content>
+      <h3>CityCare Hospital is a multi-specialty institution offering 24/7 expert care and diagnostics.</h3>
+    </mat-card-content>
+  </mat-card>
+
+<div class="summary-cards">
+  <mat-card class="card doctor">
+    <mat-card-title>Total Doctors</mat-card-title>
+    <mat-card-content class="content">{{ totalDoctors }}</mat-card-content>
+  </mat-card>
+
+  <mat-card class="card patient">
+    <mat-card-title>Total Patients</mat-card-title>
+    <mat-card-content class="content">{{ totalPatients }}</mat-card-content>
+  </mat-card>
+
+  <mat-card class="card appointment">
+    <mat-card-title>Total Appointments</mat-card-title>
+    <mat-card-content class="content">{{ totalAppointments }}</mat-card-content>
+  </mat-card>
+</div>
+
+  <div class="chart-container" *ngIf="appointmentsChart">
+    <apx-chart
+      [series]="appointmentsChart.series"
+      [chart]="appointmentsChart.chart"
+      [xaxis]="appointmentsChart.xaxis"
+      [title]="appointmentsChart.title">
+    </apx-chart>
+  </div>
+
+  <div class="chart-container" *ngIf="doctorSpecializations">
+    <apx-chart
+      [series]="doctorSpecializations.series"
+      [chart]="doctorSpecializations.chart"
+      [labels]="doctorSpecializations.labels"
+      [title]="doctorSpecializations.title"
+      [responsive]="doctorSpecializations.responsive"
+      [legend]="doctorSpecializations.legend">
+    </apx-chart>
+  </div>
+
+  <div class="chart-container" *ngIf="patientGrowthChart">
+    <apx-chart
+      [series]="patientGrowthChart.series"
+      [chart]="patientGrowthChart.chart"
+      [xaxis]="patientGrowthChart.xaxis"
+      [title]="patientGrowthChart.title"
+      [dataLabels]="patientGrowthChart.dataLabels">
+    </apx-chart>
+  </div>
+</div>

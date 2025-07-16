@@ -1,0 +1,50 @@
+<mat-sidenav-container class="app-container" autosize>
+
+    <mat-sidenav #drawer class="app-sidenav" mode="over" [opened]="false" disableClose="false"
+        (openedChange)="drawerOpened = $event">
+        <mat-toolbar color="transparent" class="sidenav-header">
+            <button mat-icon-button (click)="goToDashboard()" (click)="drawer.close()">
+                <mat-icon>home</mat-icon>
+            </button>
+            <span>Menu</span>
+            <button mat-icon-button (click)="drawer.close()" aria-label="Close menu">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <mat-nav-list>
+            <a mat-list-item routerLink="/doctors" routerLinkActive="active-link" (click)="drawer.close()">
+                <mat-icon class="nav-icon">local_hospital</mat-icon> Doctors
+            </a>
+            <a mat-list-item routerLink="/patients" routerLinkActive="active-link" (click)="drawer.close()">
+                <mat-icon class="nav-icon">people</mat-icon> Patients
+            </a>
+            <a mat-list-item routerLink="/appointments" routerLinkActive="active-link" (click)="drawer.close()">
+                <mat-icon class="nav-icon">event_note</mat-icon> Appointments
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content [class.dimmed]="drawerOpened">
+        <mat-toolbar color="primary" class="app-toolbar">
+
+            <div>
+                <button mat-icon-button (click)="drawer.toggle()" aria-label="Toggle menu">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <span class="app-title" (click)="goToDashboard()">Hospital Management</span>
+            </div>
+
+            <div class="nav-content">
+                <span>About</span>
+                <span>Contact us</span>
+            </div>
+
+        </mat-toolbar>
+
+        <main class="app-main-content">
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

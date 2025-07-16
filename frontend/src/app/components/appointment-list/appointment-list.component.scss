@@ -1,0 +1,74 @@
+.container {
+  padding: 40px 16px;
+}
+
+.title {
+  font-size: 35px;
+  margin-bottom: 24px;
+  text-align: center;
+  color: whitesmoke;
+}
+
+.appointment-card {
+  max-width: 480px;
+  margin: 0 auto;
+  background: rgba(237, 230, 230, 0.888);
+  color: #fff;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  padding: 16px;
+  animation: fadeIn 0.4s ease;
+}
+
+.appointment-card p {
+  margin: 12px 0;
+  font-size: 16px;
+  color:black;
+  font-weight: 500;
+}
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+button[mat-raised-button] {
+  height: 44px;
+  min-width: 180px;
+  font-weight: bold;
+  background: transparent;
+  color: #80d8ff;
+  border: 2px solid #80d8ff;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+button[mat-raised-button]:hover {
+  background: #80d8ff;
+  color: #000;
+  transform: scale(1.05);
+}
+
+.message.error {
+  color: #f44336;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px;
+}
+
+.status-completed {
+  background-color: #7db5ed !important; 
+  color: white !important;
+}
+
+.status-cancelled {
+  background-color: #ff1d1d !important; 
+  color: white !important;
+}
+
+.status-scheduled {
+  background-color: #ca69f4 !important; 
+  color: white !important;
+}

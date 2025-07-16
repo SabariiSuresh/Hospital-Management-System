@@ -1,0 +1,31 @@
+<div class="container">
+  <h2 class="title">
+    <mat-icon>medical_services</mat-icon> Doctor Details
+  </h2>
+
+  <mat-card class="doctor-card" *ngIf="doctor; else error">
+    <mat-card-content>
+      <p>
+        <mat-icon>person</mat-icon>&nbsp;
+        <strong>Name :</strong> {{ doctor.name | titlecase }}
+      </p>
+      <p>
+        <mat-icon>menu_book</mat-icon>&nbsp;
+        <strong>Specialization :</strong> {{ doctor.specialization }}
+      </p>
+      <p>
+        <mat-icon>event_available</mat-icon>&nbsp;
+        <strong>Availability : </strong> 
+        <span>{{doctor.availability}}</span>
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions class="back-button-container">
+      <button mat-raised-button color="primary" (click)="goBack()">← Back to List</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <ng-template #error>
+    <p class="message error">{{ errorMessage }}</p>
+  </ng-template>
+</div>

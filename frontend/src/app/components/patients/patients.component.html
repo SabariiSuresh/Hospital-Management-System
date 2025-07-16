@@ -1,0 +1,73 @@
+<div class="message success" *ngIf="successMessage">{{ successMessage }}</div>
+<div class="message error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+<h2 class="title">Add Patient</h2>
+
+<form (ngSubmit)="onSumbit()" #patientForm="ngForm" class="patient-form">
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" name="name" [(ngModel)]="newPatient.name" required placeholder="Enter patient name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Age</mat-label>
+    <input matInput type="number" name="age" [(ngModel)]="newPatient.age" required placeholder="Enter your age" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Gender</mat-label>
+    <mat-select name="gender" [(ngModel)]="newPatient.gender" required>
+      <mat-option *ngFor="let gender of genderOption" [value]="gender">{{ gender }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Contact</mat-label>
+    <input matInput type="text" name="contact" [(ngModel)]="newPatient.contact" required placeholder="Enter your contact number" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Medical History</mat-label>
+    <input matInput name="medicalHistory" [(ngModel)]="newPatient.medicalHistory" required placeholder="Enter your medical history" />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="patientForm.invalid">
+    {{ isEditing ? 'Update Patient' : 'Add Patient' }}
+  </button>
+
+  <button mat-raised-button type="button" (click)="resetForm()" *ngIf="isEditing">Cancel</button>
+
+</form><br>
+
+<hr class="my-4 border-t-2 border-gray-300"><br>
+
+<h2 class="title" *ngIf="patients.length > 0">Patients List</h2>
+
+<div class="patient-cards">
+  <mat-card *ngFor="let patient of paginatedData" class="patient-card mat-elevation-z3">
+    <mat-card-content>
+      <h3 class="title-patient">{{ patient.name | titlecase }}</h3>
+      <p><mat-icon inline>cake</mat-icon>&nbsp; <strong>Age :</strong> {{ patient.age }}</p>
+      <p><mat-icon inline>wc</mat-icon>&nbsp; <strong>Gender :</strong> {{ patient.gender }}</p>
+      <p><mat-icon inline>call</mat-icon> &nbsp;<strong>Contact :</strong> {{ patient.contact }}</p>
+      <p><mat-icon inline>medical_services</mat-icon>&nbsp; <strong>Medical History :</strong> {{ patient.medicalHistory | titlecase }}</p>
+    </mat-card-content>
+    <mat-card-actions align="end" class="action-buttons">
+      <button mat-icon-button color="accent" (click)="goToPatientList(patient._id!)" aria-label="View Patient">
+        <mat-icon>preview</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" (click)="editPatient(patient)" aria-label="Edit Patient">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deletePatient(patient._id!)" aria-label="Delete Patient">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<div class="paginator-container" *ngIf="patients.length > 0">
+  <mat-paginator [length]="patients.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

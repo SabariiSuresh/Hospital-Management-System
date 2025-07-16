@@ -1,0 +1,196 @@
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.app-container {
+  height: 100vh;
+  background: linear-gradient(270deg, #667eea, #764ba2, #5a43a1, #9b59b6);
+  background-size: 800% 800%;
+  animation: gradientBG 15s ease infinite;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+
+.app-sidenav {
+  width: 260px;
+  background: linear-gradient(180deg, #4b6cb7, #182848);
+  color: #eee;
+  font-weight: 600;
+  box-shadow: 4px 0 12px rgba(0,0,0,0.5);
+  transition: box-shadow 0.3s ease;
+  border-radius: 0 20px 20px 0;
+  overflow-y: auto;
+}
+
+
+.app-sidenav:hover {
+  box-shadow: 6px 0 20px rgba(0,0,0,0.8);
+}
+
+
+.sidenav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0 16px;
+  background: transparent !important;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+
+.mat-nav-list a.mat-list-item {
+  color: #ddd;
+  font-weight: 600;
+  font-size: 1.15rem;
+  transition: 
+    background-color 0.3s ease, 
+    color 0.3s ease, 
+    box-shadow 0.3s ease,
+    transform 0.25s ease;
+  border-radius: 10px;
+  margin: 8px 14px;
+  box-shadow: inset 3px 3px 6px #3a5292, inset -3px -3px 6px #5576bf;
+}
+
+.mat-nav-list a.mat-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  box-shadow: 0 0 15px #7b5cff, inset 3px 3px 6px #3a5292;
+  transform: scale(1.05);
+}
+
+
+.mat-nav-list a.active-link {
+  background: #7b5cff;
+  color: #fff;
+  box-shadow: 0 0 15px #7b5cff, inset 3px 3px 6px #5d3ade;
+  transform: scale(1.08);
+}
+
+
+.nav-icon {
+  margin-right: 12px;
+  color: #9a8fff;
+  transition: color 0.3s ease;
+  font-size: 22px;
+}
+
+.mat-nav-list a.mat-list-item:hover .nav-icon {
+  color: #fff;
+}
+
+
+.app-toolbar {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+  font-weight: 700;
+  background: #5a43a1;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+
+
+.app-title {
+  margin-left: 20px;
+  font-size: 30px;
+  user-select: none;
+  cursor: pointer;
+}
+
+
+.app-toolbar button.mat-icon-button {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.app-toolbar button.mat-icon-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+
+.app-main-content {
+  padding: 32px;
+  min-height: calc(100vh - 64px); 
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  margin: 20px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  color: #fff;
+  overflow-y: auto;
+  position: relative;
+  overflow-x: hidden;
+  user-select: text;
+}
+
+
+@keyframes shimmer {
+  0% {
+    background-position: -300px 0;
+  }
+  100% {
+    background-position: 300px 0;
+  }
+}
+
+.app-main-content::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 70%
+  );
+  background-size: 300% 100%;
+  animation: shimmer 6s infinite;
+  border-radius: 16px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+.dimmed {
+  filter: brightness(0.5);
+  transition: filter 0.3s ease;
+}
+
+
+.app-sidenav::-webkit-scrollbar,
+.app-main-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.app-sidenav::-webkit-scrollbar-thumb,
+.app-main-content::-webkit-scrollbar-thumb {
+  background: rgba(123, 92, 255, 0.6);
+  border-radius: 10px;
+}
+
+.app-sidenav::-webkit-scrollbar-track,
+.app-main-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nav-content {
+  display: flex;
+  gap: 24px;
+  font-size: medium;
+  cursor: pointer;
+}

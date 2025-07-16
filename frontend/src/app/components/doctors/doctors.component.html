@@ -1,0 +1,67 @@
+<div class="message success" *ngIf="successMessage">{{ successMessage }}</div>
+<div class="message error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+<h2 class="title">Add Doctor</h2>
+
+<form (ngSubmit)="submitOn()" #doctorForm="ngForm" class="doctor-form">
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" name="name" [(ngModel)]="newDoctor.name" required placeholder="Enter doctor name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Specialization</mat-label>
+    <mat-select name="specialization" [(ngModel)]="newDoctor.specialization" required>
+      <mat-option *ngFor="let spec of specializations" [value]="spec">{{ spec }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field">
+    <mat-label>Availability</mat-label>
+    <mat-select name="availability" [(ngModel)]="newDoctor.availability" multiple required>
+      <mat-option *ngFor="let day of daysOfWeek" [value]="day">{{ day }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="doctorForm.invalid">
+    {{ isEditing ? 'Update Doctor' : 'Add Doctor' }}
+  </button>
+
+  <button mat-raised-button type="button" (click)="resetForm()" *ngIf="isEditing">Cancel</button>
+
+</form><br>
+
+<hr class="my-4 border-t-2 border-gray-300"><br>
+
+<h2 class="title" *ngIf="doctors.length > 0">Doctors List</h2>
+
+<div class="doctor-cards">
+  <mat-card *ngFor="let doctor of paginatedData" class="doctor-card mat-elevation-z3">
+    <mat-card-content>
+      <h3 class="title-doc">{{ doctor.name | titlecase }}</h3>
+      <p><mat-icon inline>medical_services</mat-icon>&nbsp; <strong>Specialization :</strong> {{ doctor.specialization
+        }}</p>
+      <p><mat-icon inline>event_available</mat-icon>&nbsp; <strong>Availability :</strong> {{ doctor.availability }}</p>
+    </mat-card-content>
+    <mat-card-actions align="end" class="action-buttons">
+
+      <button mat-icon-button color="accent" (click)="goToDoctorList(doctor._id!)" aria-label="View Doctor">
+        <mat-icon>preview</mat-icon>
+      </button>
+
+      <button mat-icon-button color="primary" (click)="editDoctor(doctor)" aria-label="Edit Doctor">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button mat-icon-button color="warn" (click)="deleteDoctor(doctor._id!)" aria-label="Delete Doctor">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<div class="paginator-container" *ngIf="doctors.length > 0">
+  <mat-paginator [length]="doctors.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

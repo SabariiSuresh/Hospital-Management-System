@@ -1,0 +1,74 @@
+.mat-dialog-container {
+  max-width: 600px;    /* wider dialog */
+  width: 90vw;         /* responsive width */
+  min-width: 400px;    /* minimum width */
+  /* other existing styles */
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.37),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  color: #222;
+  padding: 24px 32px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+mat-dialog-content {
+  p {
+    margin: 20px 0 20px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+    white-space: normal; /* ensures text wraps nicely */
+  }
+}
+
+
+/* Actions: buttons aligned right with spacing */
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+/* Buttons base style */
+button {
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Light flat button */
+button[mat-flat-button] {
+  background: linear-gradient(135deg, #f0f0f0, #dcdcdc);
+  color: #444;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+button[mat-flat-button]:hover {
+  background: linear-gradient(135deg, #e0e0e0, #c4c4c4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Raised delete button */
+button[mat-raised-button] {
+  background: linear-gradient(135deg, #e53935, #b71c1c);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(229, 57, 53, 0.5);
+}
+
+button[mat-raised-button]:hover {
+  background: linear-gradient(135deg, #c62828, #7f0000);
+  box-shadow: 0 6px 16px rgba(198, 40, 40, 0.7);
+}
