@@ -10,7 +10,7 @@ import { PageEvent } from '@angular/material/paginator';
   selector: 'app-patients',
   standalone: false,
   templateUrl: './patients.component.html',
-  styleUrl: './patients.component.scss'
+  styleUrls: ['./patients.component.scss']
 })
 export class PatientsComponent implements OnInit {
 
