@@ -14,6 +14,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { PatientListComponent } from './components/patient-list/patient-list.component';
 import { AppointmentListComponent } from './components/appointment-list/appointment-list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     ConfirmDialogComponent,
     PatientListComponent,
     AppointmentListComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
