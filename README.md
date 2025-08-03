@@ -94,11 +94,6 @@ npm install
 ng serve
 ```
 
-## 🌐 Live Demo
-[Click here to view live] https://hospital-management-system-1-hl7y.onrender.com
-
----
-
 ## 🛡️ Environment Variables
 
 Create `.env` in `backend/` folder with the following:
